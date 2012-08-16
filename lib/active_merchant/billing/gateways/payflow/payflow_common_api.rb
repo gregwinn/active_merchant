@@ -143,7 +143,7 @@ module ActiveMerchant #:nodoc:
           
       def parse(data)
         response = {}
-        xml = REXML::Document.new(data)
+        xml = REXML::Document.new(data.force_encoding("ISO-8859-1").encode("UTF-8"))
         root = REXML::XPath.first(xml, "//ResponseData")
         
         # REXML::XPath in Ruby 1.8.6 is now unable to match nodes based on their attributes
